@@ -1,5 +1,6 @@
 package br.com.lorijr.conta_zen_api.service;
 
+import br.com.lorijr.conta_zen_api.exception.ResourceNotFoundException;
 import br.com.lorijr.conta_zen_api.models.Fatura;
 import br.com.lorijr.conta_zen_api.models.dto.FaturaDTO;
 import br.com.lorijr.conta_zen_api.models.mapper.FaturaMapper;
@@ -31,7 +32,7 @@ public class FaturaService {
 
     public FaturaDTO listarPorId(String id){
         Fatura fatura = faturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Fatura não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Fatura não encontrada"));
         return faturaMapper.toDTO(fatura);
     }
 
