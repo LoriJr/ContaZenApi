@@ -3,4 +3,4 @@ spring:
     name: conta-zen-api
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/contazen_db
+      uri: mongodb://localhost:27017/contazen_db

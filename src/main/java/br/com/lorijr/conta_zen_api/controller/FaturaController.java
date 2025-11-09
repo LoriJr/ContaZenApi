@@ -21,7 +21,7 @@ public class FaturaController {
         return faturaService.listarFatura();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Fatura> listarPorId(@PathVariable String id){
         return faturaService.listarPorId(id)
                 .map(ResponseEntity::ok)
@@ -38,7 +38,7 @@ public class FaturaController {
         return faturaService.atualizarFatura(id, dadosAtualizados);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable String id){
         faturaService.deletarFatura(id);
     }

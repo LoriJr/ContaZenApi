@@ -3,10 +3,12 @@ package br.com.lorijr.conta_zen_api.service;
 import br.com.lorijr.conta_zen_api.models.Fatura;
 import br.com.lorijr.conta_zen_api.repository.FaturaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class FaturaService {
 
