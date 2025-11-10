@@ -6,7 +6,6 @@ import java.util.List;
 
 @Data
 public class FaturaDTO {
-
     private List<ItemContaDTO> contaAvulsa;
     private CartaoDeCreditoDTO cartaoDeCredito;
 }
