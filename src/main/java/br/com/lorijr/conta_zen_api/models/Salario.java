@@ -12,7 +12,7 @@ public class Salario {
     private Double salarioQuinzenaUm;
     private Double salarioQuinzenaDois;
 
-    public Double somaSalario(){
+    public Double getSomaSalario(){
         return this.salarioQuinzenaUm + this.salarioQuinzenaDois;
     }
 }
