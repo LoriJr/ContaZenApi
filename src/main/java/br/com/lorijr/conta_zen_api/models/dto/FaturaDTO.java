@@ -8,4 +8,5 @@ import java.util.List;
 public class FaturaDTO {
     private List<ItemContaDTO> contaAvulsa;
     private CartaoDeCreditoDTO cartaoDeCredito;
+    private Double valorTotal;
 }
