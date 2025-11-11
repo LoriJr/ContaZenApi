@@ -10,12 +10,17 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CartaoDeCredito{
+public class CartaoDeCredito implements Comparable<ItemConta> {
 
     private List<ItemConta> compras;
 
     public CartaoDeCredito(List<ItemConta> compras){
 
         this.compras = compras;
+    }
+
+    @Override
+    public int compareTo(ItemConta outraConta) {
+        return Double.compare(this.compras.getFirst().getValor(), outraConta.getValor());
     }
 }

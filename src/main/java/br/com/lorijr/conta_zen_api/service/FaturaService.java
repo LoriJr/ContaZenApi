@@ -8,6 +8,7 @@ import br.com.lorijr.conta_zen_api.repository.FaturaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,8 @@ public class FaturaService {
 
     public List<FaturaDTO> listarFatura(){
         List<Fatura> faturas = faturaRepository.findAll();
+        faturas.getFirst().getContaAvulsa().sort(Collections.reverseOrder());
+        faturas.getFirst().getCartaoDeCredito().getCompras().sort(Collections.reverseOrder());
         return faturaMapper.toDTO(faturas);
     }
 

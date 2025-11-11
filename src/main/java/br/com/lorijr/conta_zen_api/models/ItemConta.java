@@ -10,10 +10,15 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemConta {
+public class ItemConta implements Comparable<ItemConta> {
 
     private String descricao;
     private double valor;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataVencimento;
+
+    @Override
+    public int compareTo(ItemConta outraConta) {
+        return Double.compare(this.valor, outraConta.getValor());
+    }
 }

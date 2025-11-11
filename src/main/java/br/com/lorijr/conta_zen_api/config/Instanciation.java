@@ -26,17 +26,18 @@ public class Instanciation implements CommandLineRunner {
 
         Pessoa pessoa1 = new Pessoa("Junior", new Salario(1300.0, 1500.0));
 
-        ItemConta itemConta = new ItemConta("Conta de Gas", 56.00, data);
+        ItemConta itemConta1 = new ItemConta("Conta de Gas", 156.00, data);
+        ItemConta itemConta2 = new ItemConta("IPTU", 70.0, data);
 
-        ItemConta item1 = new ItemConta("Conta de luz", 56.00, data);
+        ItemConta item1 = new ItemConta("Conta de luz", 210, data);
         ItemConta item2 = new ItemConta("Conta de agua", 56.00, data);
-        ItemConta item3 = new ItemConta("Conta de internet", 56.00, data);
+        ItemConta item3 = new ItemConta("Conta de internet", 320.0, data);
 
         List<ItemConta> list = List.of(item1, item2, item3);
 
         CartaoDeCredito cartao = new CartaoDeCredito(list);
 
-        Fatura fatura = new Fatura("1", List.of(pessoa1), List.of(itemConta), cartao);
+        Fatura fatura = new Fatura("1", List.of(pessoa1), List.of(itemConta1, itemConta2), cartao);
 
         faturaRepository.save(fatura);
 
