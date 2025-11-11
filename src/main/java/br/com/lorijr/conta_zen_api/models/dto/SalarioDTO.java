@@ -6,4 +6,5 @@ import lombok.Data;
 public class SalarioDTO {
     private Double salarioQuinzenaUm;
     private Double salarioQuinzenaDois;
+    private Double somaSalario;
 }

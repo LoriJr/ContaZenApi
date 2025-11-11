@@ -1,8 +1,6 @@
 package br.com.lorijr.conta_zen_api.config;
 
-import br.com.lorijr.conta_zen_api.models.CartaoDeCredito;
-import br.com.lorijr.conta_zen_api.models.Fatura;
-import br.com.lorijr.conta_zen_api.models.ItemConta;
+import br.com.lorijr.conta_zen_api.models.*;
 import br.com.lorijr.conta_zen_api.repository.FaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +24,8 @@ public class Instanciation implements CommandLineRunner {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data = LocalDate.parse("09/09/2023", formatter);
 
+        Pessoa pessoa1 = new Pessoa("Junior", new Salario(1300.0, 1500.0));
+
         ItemConta itemConta = new ItemConta("Conta de Gas", 56.00, data);
 
         ItemConta item1 = new ItemConta("Conta de luz", 56.00, data);
@@ -36,7 +36,7 @@ public class Instanciation implements CommandLineRunner {
 
         CartaoDeCredito cartao = new CartaoDeCredito(list);
 
-        Fatura fatura = new Fatura("1", List.of(itemConta), cartao);
+        Fatura fatura = new Fatura("1", List.of(pessoa1), List.of(itemConta), cartao);
 
         faturaRepository.save(fatura);
 

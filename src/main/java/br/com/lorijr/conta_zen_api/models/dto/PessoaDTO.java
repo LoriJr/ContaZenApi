@@ -6,5 +6,4 @@ import lombok.Data;
 public class PessoaDTO {
     private String nome;
     private SalarioDTO salario;
-    private Double salarioTotal;
 }

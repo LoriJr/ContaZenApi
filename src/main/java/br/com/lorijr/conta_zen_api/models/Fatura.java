@@ -17,6 +17,7 @@ import java.util.Optional;
 public class Fatura {
 
     private String id;
+    private List<Pessoa> pessoas;
     private List<ItemConta> contaAvulsa;
     private CartaoDeCredito cartaoDeCredito;
 

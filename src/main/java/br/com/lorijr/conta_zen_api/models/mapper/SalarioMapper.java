@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface SalarioMapper {
 
-    @Mapping(source = "somaSalario", target = "salarioTotal")
+    @Mapping(source = "somaSalario", target = "somaSalario")
     SalarioDTO toDTO(Salario salario);
     void updateFromDTO(SalarioDTO salarioDTO, @MappingTarget Salario salario);
 }
