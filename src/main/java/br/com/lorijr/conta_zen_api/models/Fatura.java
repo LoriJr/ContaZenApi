@@ -39,4 +39,12 @@ public class Fatura {
         }
         return totalContasAvulsas + totalCartaoDeCredito;
     }
+
+    public Double getTotalContasAvulsas(){
+        return Optional.ofNullable(contaAvulsa)
+                .orElseGet(Collections::emptyList)
+                .stream()
+                .mapToDouble(ItemConta::getValor)
+                .sum();
+    }
 }

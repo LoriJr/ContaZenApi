@@ -9,7 +9,7 @@ import java.util.List;
 public class FaturaDTO {
     private String id;
     private List<Pessoa> pessoas;
-    private List<ItemContaDTO> contaAvulsa;
+    private ContainerContaAvulsaDTO contaAvulsa;
     private CartaoDeCreditoDTO cartaoDeCredito;
     private Double valorTotal;
 }
