@@ -37,7 +37,7 @@ public class Instanciation implements CommandLineRunner {
 
         CartaoDeCredito cartao = new CartaoDeCredito(list);
 
-        Fatura fatura = new Fatura("1", List.of(pessoa1), List.of(itemConta1, itemConta2), cartao);
+        Fatura fatura = new Fatura("1", data, List.of(pessoa1), List.of(itemConta1, itemConta2), cartao);
 
         faturaRepository.save(fatura);
 
