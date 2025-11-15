@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class Fatura {
 
     private String id;
+    private LocalDate mesReferencia;
     private List<Pessoa> pessoas;
     private List<ItemConta> contaAvulsa;
     private CartaoDeCredito cartaoDeCredito;
@@ -42,6 +44,14 @@ public class Fatura {
 
     public Double getTotalContasAvulsas(){
         return Optional.ofNullable(contaAvulsa)
+                .orElseGet(Collections::emptyList)
+                .stream()
+                .mapToDouble(ItemConta::getValor)
+                .sum();
+    }
+
+    public Double getTotalCartaoDeCretido(){
+        return Optional.ofNullable(cartaoDeCredito.getCompras())
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .mapToDouble(ItemConta::getValor)
