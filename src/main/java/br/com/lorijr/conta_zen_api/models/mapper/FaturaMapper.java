@@ -2,6 +2,7 @@ package br.com.lorijr.conta_zen_api.models.mapper;
 
 import br.com.lorijr.conta_zen_api.models.Fatura;
 import br.com.lorijr.conta_zen_api.models.ItemConta;
+import br.com.lorijr.conta_zen_api.models.dto.container.ContainerCartaoDeCreditoDTO;
 import br.com.lorijr.conta_zen_api.models.dto.container.ContainerContaAvulsaDTO;
 import br.com.lorijr.conta_zen_api.models.dto.FaturaDTO;
 import br.com.lorijr.conta_zen_api.models.dto.ItemContaDTO;
@@ -12,11 +13,12 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ItemContaMapper.class})
+@Mapper(componentModel = "spring", uses = {ItemContaMapper.class, CartaoDeCreditoMapper.class})
 public interface FaturaMapper {
 
     @Mapping(source = "valorTotal", target = "valorTotal")
     @Mapping(target = "contaAvulsa", expression = "java(mapContaAvulsa(fatura))")
+    @Mapping(target = "cartaoDeCredito", expression = "java(mapCartaoDeCredito(fatura))")
     FaturaDTO toDTO(Fatura fatura);
 
     default ContainerContaAvulsaDTO mapContaAvulsa(Fatura fatura){
@@ -25,10 +27,18 @@ public interface FaturaMapper {
         ItemContaMapper itemContaMapper = Mappers.getMapper(ItemContaMapper.class);
         ContainerContaAvulsaDTO container = new ContainerContaAvulsaDTO();
         container.setListaDespesasAvulsas(itemContaMapper.toItemContaDTO(fatura.getContaAvulsa()));
-
         container.setTotalDespesasAvulsas(fatura.getTotalContasAvulsas());
-
         return container;
+    }
+
+    default ContainerCartaoDeCreditoDTO mapCartaoDeCredito(Fatura fatura){
+        if(fatura == null) return null;
+
+        CartaoDeCreditoMapper cartaoDeCreditoMapper = Mappers.getMapper(CartaoDeCreditoMapper.class);
+        ContainerCartaoDeCreditoDTO containerCartaoDeCreditoDTO = new ContainerCartaoDeCreditoDTO();
+        containerCartaoDeCreditoDTO.setCartaoDeCredito(cartaoDeCreditoMapper.toDTO(fatura.getCartaoDeCredito()));
+        containerCartaoDeCreditoDTO.setTotalCartoDeCretido(fatura.getTotalCartaoDeCredito());
+        return containerCartaoDeCreditoDTO;
     }
 
     default List<ItemConta> map(ContainerContaAvulsaDTO container) {
@@ -36,7 +46,6 @@ public interface FaturaMapper {
 
         List<ItemContaDTO> itensDto = container.getListaDespesasAvulsas();
         ItemContaMapper itemContaMapper = Mappers.getMapper(ItemContaMapper.class);
-
         return itemContaMapper.toItemConta(itensDto);
     }
 

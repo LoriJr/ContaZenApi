@@ -50,7 +50,10 @@ public class Fatura {
                 .sum();
     }
 
-    public Double getTotalCartaoDeCretido(){
+    public Double getTotalCartaoDeCredito(){
+        if (Objects.isNull(cartaoDeCredito)) {
+            return 0.0;
+        }
         return Optional.ofNullable(cartaoDeCredito.getCompras())
                 .orElseGet(Collections::emptyList)
                 .stream()
