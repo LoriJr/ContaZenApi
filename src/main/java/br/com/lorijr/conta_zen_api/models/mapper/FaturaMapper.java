@@ -1,5 +1,6 @@
 package br.com.lorijr.conta_zen_api.models.mapper;
 
+import br.com.lorijr.conta_zen_api.models.CartaoDeCredito;
 import br.com.lorijr.conta_zen_api.models.Fatura;
 import br.com.lorijr.conta_zen_api.models.ItemConta;
 import br.com.lorijr.conta_zen_api.models.dto.container.ContainerCartaoDeCreditoDTO;
@@ -47,6 +48,13 @@ public interface FaturaMapper {
         List<ItemContaDTO> itensDto = container.getListaDespesasAvulsas();
         ItemContaMapper itemContaMapper = Mappers.getMapper(ItemContaMapper.class);
         return itemContaMapper.toItemConta(itensDto);
+    }
+
+    default CartaoDeCredito map(ContainerCartaoDeCreditoDTO container) {
+        if (container == null) return null;
+
+        CartaoDeCreditoMapper cartaoMapper = Mappers.getMapper(CartaoDeCreditoMapper.class);
+        return cartaoMapper.toEntity(container.getCartaoDeCredito());
     }
 
     List<FaturaDTO> toDTO(List<Fatura> faturas);
