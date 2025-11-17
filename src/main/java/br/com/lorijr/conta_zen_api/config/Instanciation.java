@@ -25,6 +25,7 @@ public class Instanciation implements CommandLineRunner {
         LocalDate data = LocalDate.parse("09/09/2023", formatter);
 
         Pessoa pessoa1 = new Pessoa("Junior", new Salario(1300.0, 1500.0));
+        Pessoa pessoa2 = new Pessoa("Louri", new Salario(0.0, 1500.0));
 
         ItemConta itemConta1 = new ItemConta("Conta de Gas", 156.00, data);
         ItemConta itemConta2 = new ItemConta("IPTU", 70.0, data);
@@ -37,7 +38,7 @@ public class Instanciation implements CommandLineRunner {
 
         CartaoDeCredito cartao = new CartaoDeCredito(list);
 
-        Fatura fatura = new Fatura("1", data, List.of(pessoa1), List.of(itemConta1, itemConta2), cartao);
+        Fatura fatura = new Fatura("1", data, List.of(pessoa1, pessoa2), List.of(itemConta1, itemConta2), cartao);
 
         faturaRepository.save(fatura);
 

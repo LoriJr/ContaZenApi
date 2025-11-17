@@ -51,13 +51,22 @@ public class Fatura {
     }
 
     public Double getTotalCartaoDeCredito(){
-        if (Objects.isNull(cartaoDeCredito)) {
-            return 0.0;
-        }
+        if (Objects.isNull(cartaoDeCredito)) return 0.0;
+
         return Optional.ofNullable(cartaoDeCredito.getCompras())
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .mapToDouble(ItemConta::getValor)
+                .sum();
+    }
+
+    public Double getTotalRenda(){
+        if(Objects.isNull(pessoas)) return 0.0;
+
+        return pessoas.stream()
+                .map(Pessoa::getSalario)
+                .filter(Objects::nonNull)
+                .mapToDouble(Salario::getSomaSalario)
                 .sum();
     }
 }

@@ -4,8 +4,10 @@ import br.com.lorijr.conta_zen_api.models.Pessoa;
 import br.com.lorijr.conta_zen_api.models.dto.PessoaDTO;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface PessoaMapper {
-    PessoaDTO toDTO(Pessoa pessoa);
-    Pessoa toEntity(PessoaDTO pessoaDTO);
+    List<PessoaDTO> toDTO(List<Pessoa> pessoa);
+    List<Pessoa> toEntity(List<PessoaDTO> pessoaDTO);
 }
